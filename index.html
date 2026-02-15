@@ -108,34 +108,29 @@
       position:absolute; inset:0; z-index:0;
     }
     .heroMedia video{
-      width:100%; height:100%;
-      object-fit:cover;
-      transform:scale(1.02);
-      filter: brightness(1.08) saturate(1.05) contrast(1.05);
-    }
-    .heroOverlay{
+  width:100%; height:100%;
+  object-fit:cover;
+  transform:scale(1.02);
+  /* que el video “salga” más */
+  filter: brightness(1.08) contrast(1.18) saturate(1.08);
+}
+
+.heroOverlay{
   position:absolute; inset:0;
-  background:
-    linear-gradient(90deg,
-      rgba(1,27,75,.82) 0%,
-      rgba(1,27,75,.58) 22%,
-      rgba(1,27,75,.38) 40%,
-      rgba(1,27,75,.14) 54%,
-      rgba(1,27,75,.06) 62%,
-      rgba(1,27,75,0)   60%
-    ),
-    radial-gradient(1200px 600px at 18% 15%,
-      rgba(0,68,131,.22) 0%,
-      rgba(0,68,131,0) 55%
-    ),
-    radial-gradient(900px 520px at 88% 30%,
-      rgba(2,137,190,.10) 0%,
-      rgba(2,137,190,0) 60%
-    ),
-    linear-gradient(180deg,
-      rgba(0,0,0,.10) 0%,
-      rgba(0,0,0,.03) 35%,
-      rgba(0,0,0,.16) 100%
+  pointer-events:none;
+
+  /* 1) degradado editorial: fuerte a la izquierda, limpio a la derecha */
+  background: linear-gradient(90deg,
+    rgba(1,27,75,.84) 0%,
+    rgba(1,27,75,.78) 26%,
+    rgba(1,27,75,.48) 44%,
+    rgba(1,27,75,.18) 60%,
+    rgba(1,27,75,.06) 72%,
+    rgba(1,27,75,0)   84%
+  );
+  mix-blend-mode: multiply;
+}
+
     );
 }
 
