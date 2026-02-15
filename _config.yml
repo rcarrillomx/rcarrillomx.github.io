@@ -1,0 +1,7 @@
+title: Predictivo | Rafael Carrillo
+description: "Neurociencia aplicada y realidad sin humo."
+url: ""
+markdown: kramdown
+permalink: /blog/:categories/:year/:month/:day/:title/
+timezone: America/Mexico_City
+theme: null
