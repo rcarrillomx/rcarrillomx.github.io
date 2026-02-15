@@ -114,15 +114,31 @@
       filter:saturate(1.03) contrast(1.05);
     }
     .heroOverlay{
-      position:absolute; inset:0;
-      background:
-       radial-gradient(1200px 600px at 18% 15%, rgba(0,68,131,.40) 0%, rgba(0,68,131,0) 60%),
-       radial-gradient(900px 520px at 88% 30%, rgba(2,137,190,.16) 0%, rgba(2,137,190,0) 70%),
-       linear-gradient(45deg,
-    rgba(1,27,75,.88) 0%,
-    rgba(1,27,75,.68) 32%,
-    rgba(1,27,75,.18) 58%,
-    rgba(1,27,75,0) 100%
+  position:absolute; inset:0;
+  background:
+    linear-gradient(90deg,
+      rgba(1,27,75,.82) 0%,
+      rgba(1,27,75,.58) 22%,
+      rgba(1,27,75,.38) 40%,
+      rgba(1,27,75,.14) 54%,
+      rgba(1,27,75,.06) 62%,
+      rgba(1,27,75,0)   60%
+    ),
+    radial-gradient(1200px 600px at 18% 15%,
+      rgba(0,68,131,.22) 0%,
+      rgba(0,68,131,0) 55%
+    ),
+    radial-gradient(900px 520px at 88% 30%,
+      rgba(2,137,190,.10) 0%,
+      rgba(2,137,190,0) 60%
+    ),
+    linear-gradient(180deg,
+      rgba(0,0,0,.10) 0%,
+      rgba(0,0,0,.03) 35%,
+      rgba(0,0,0,.16) 100%
+    );
+}
+
   );
 
     }
