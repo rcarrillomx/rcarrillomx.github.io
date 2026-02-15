@@ -1,0 +1,493 @@
+<!doctype html>
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Predictivo | Rafael Carrillo</title>
+<meta content="Neurociencia y realidad, sin humo: evidencia, límites y herramientas prácticas con contexto." name="description"/>
+<!-- Open Graph -->
+<meta content="Predictivo | Rafael Carrillo" property="og:title"/>
+<meta content="Neurociencia y realidad: evidencia, límites y herramientas prácticas con contexto." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="#011b4b" name="theme-color"/>
+<!-- Tipografías (gratis) -->
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root{
+      /* Paleta sugerida (tu base) */
+      --navy:#011b4b;      /* énfasis principal */
+      --blue:#004483;      /* énfasis secundario */
+      --accent:#0289be;    /* CTA / links activos */
+      --sky:#97cadd;       /* highlights suaves */
+      --ice:#dee8f1;       /* fondos claros */
+      --white:#ffffff;
+
+      --text:#0b1220;
+      --muted:#546179;
+      --line: rgba(12,18,32,.12);
+      --shadow: 0 14px 40px rgba(1,27,75,.14);
+
+      --max:1100px;
+      --r:18px;
+
+      --font-body: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --font-head: Archivo, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      color:var(--text);
+      background: var(--white);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.88);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(12,18,32,.08);
+    }
+    nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+    .brandMark{
+      width:10px; height:10px; border-radius:999px; background:var(--accent);
+      box-shadow: 0 0 0 6px rgba(2,137,190,.14);
+    }
+    .brandText{display:flex; flex-direction:column; line-height:1.1}
+    .brandTitle{
+      font-family: var(--font-head);
+      font-weight:700;
+      letter-spacing:.10em;
+      font-size:13px;
+    }
+    .brandSub{
+      font-family: var(--font-head);
+      font-weight:500;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:11px;
+      color:rgba(11,18,32,.65);
+      margin-top:3px;
+    }
+    .menu{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .menu a{
+      text-decoration:none; color:rgba(11,18,32,.76);
+      font-weight:600; font-size:14px;
+      padding:8px 10px; border-radius:12px;
+    }
+    .menu a:hover{background:rgba(222,232,241,.7); color:#0b1220}
+
+    /* Hero con video (si subes assets/hero.mp4) */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      color:var(--white);
+      padding:68px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, var(--navy) 0%, #081a3e 100%);
+    }
+    .heroMedia{
+      position:absolute; inset:0; z-index:0;
+    }
+    .heroMedia video{
+      width:100%; height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+      filter:saturate(1.03) contrast(1.05);
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 600px at 18% 15%, rgba(0,68,131,.80) 0%, rgba(0,68,131,0) 55%),
+        radial-gradient(900px 520px at 88% 30%, rgba(2,137,190,.35) 0%, rgba(2,137,190,0) 60%),
+        linear-gradient(180deg, rgba(1,27,75,.78) 0%, rgba(1,27,75,.92) 100%);
+    }
+    .hero .wrap{position:relative; z-index:1}
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:26px;
+      align-items:center;
+    }
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr; gap:18px}
+    }
+    .kicker{
+      font-family: var(--font-mono);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      opacity:.85; margin:0 0 10px;
+    }
+    h1{
+      font-family: var(--font-head);
+      margin:0 0 10px;
+      font-size:46px;
+      line-height:1.06;
+      letter-spacing:-.02em;
+    }
+    @media (max-width: 520px){h1{font-size:36px}}
+    .sub{margin:0 0 18px; font-size:16px; opacity:.92; max-width:62ch}
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.10);
+      color:var(--white);
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.16); border-color:rgba(255,255,255,.28)}
+    .btnPrimary{
+      background:var(--white);
+      color:var(--navy);
+      border-color:var(--white);
+    }
+    .btnPrimary:hover{background:rgba(222,232,241,.95)}
+    .note{
+      font-size:12px; color:rgba(255,255,255,.72); margin-top:10px;
+      max-width:75ch;
+    }
+
+    .heroCard{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:var(--r);
+      padding:16px;
+    }
+    .heroCard h3{
+      margin:0 0 8px;
+      font-family: var(--font-head);
+      font-size:14px;
+      letter-spacing:.02em;
+      opacity:.95
+    }
+    .heroCard ul{margin:0; padding-left:18px; opacity:.90; font-size:13px}
+
+    /* Icon pills */
+    .pill{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .pill a{
+      width:44px;
+      height:44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(255,255,255,.10);
+      color:rgba(255,255,255,.95);
+      text-decoration:none;
+    }
+    .pill a:hover{background:rgba(255,255,255,.16)}
+    .pill a svg{
+      width:20px;
+      height:20px;
+      fill:currentColor;
+      display:block;
+    }
+
+    /* Main */
+    main{padding:34px 0 64px}
+    section{padding:24px 0}
+    .h2{
+      margin:0 0 10px;
+      font-family: var(--font-head);
+      font-size:26px;
+      letter-spacing:-.01em;
+    }
+    .muted{color:var(--muted)}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    @media (max-width: 920px){.grid2{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .tag{
+      display:inline-flex;
+      font-size:12px; font-weight:700;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(151,202,221,.22);
+      color:var(--blue);
+      border:1px solid rgba(151,202,221,.55);
+    }
+    .btnRow2{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .btnDark{
+      background:var(--navy);
+      color:var(--white);
+      border:1px solid var(--navy);
+    }
+    .btnDark:hover{background:#02153a}
+    .btnGhost{
+      background:transparent;
+      color:var(--navy);
+      border:1px solid rgba(1,27,75,.22);
+    }
+    .btnGhost:hover{background:rgba(222,232,241,.65)}
+
+    .embed{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:var(--r);
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--navy);
+    }
+    .embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+    /* Diario preview */
+    .diaryGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:16px; align-items:start}
+    @media (max-width: 920px){.diaryGrid{grid-template-columns:1fr}}
+    .diaryList{margin:10px 0 0; padding-left:18px}
+    .mono{font-family:var(--font-mono)}
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(12,18,32,.10);
+      padding:26px 0;
+      color:#445065;
+      background: linear-gradient(180deg, #fff 0%, rgba(222,232,241,.35) 100%);
+    }
+    .footGrid{
+      display:flex; justify-content:space-between; gap:14px;
+      flex-wrap:wrap; align-items:center;
+      font-size:13px;
+    }
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .links a{color:#445065; text-decoration:none}
+    .links a:hover{text-decoration:underline}
+
+    /* Respeta “reduced motion”: oculta video */
+    @media (prefers-reduced-motion: reduce){
+      .heroMedia video{ display:none; }
+    }
+  
+    .btnDisabled{opacity:.55; pointer-events:none;}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<nav>
+<a aria-label="Ir a inicio" class="brand" href="#inicio">
+<span class="brandMark"></span>
+<div class="brandText">
+<div class="brandTitle">PREDICTIVO</div>
+<div class="brandSub">NEUROCIENCIA Y REALIDAD</div>
+</div>
+</a>
+<div class="menu">
+<a href="#sobre">Sobre</a>
+<a href="#empieza">Empieza aquí</a>
+<a href="#episodio">Episodio</a>
+<a href="#diario">Diario</a>
+<a href="#contacto">Contacto</a>
+</div>
+</nav>
+</div>
+</header>
+<section class="hero" id="inicio">
+<div aria-hidden="true" class="heroMedia">
+<!-- Si subes assets/hero.mp4 y assets/hero.jpg, se verá tipo Rich Roll -->
+<video autoplay="" loop="" muted="" playsinline="" poster="assets/hero.jpg" preload="metadata">
+<source src="assets/oficial.mp4" type="video/mp4"/>
+</video>
+<div class="heroOverlay"></div>
+</div>
+<div class="wrap">
+<div class="heroGrid">
+<div>
+<p class="kicker">Neurociencia y realidad</p>
+<h1>Tertulia con criterio y honestidad</h1>
+<p class="sub">Contenido divulgativo para entender nuestro sistema nervioso y tomar mejores decisiones: evidencia, límites y herramientas prácticas con contexto.</p>
+<div class="ctaRow">
+<a class="btn btnPrimary" href="https://www.youtube.com/playlist?list=UUsnggbxqpFU8EwycWwTBZ5w&amp;utm_source=web&amp;utm_medium=cta&amp;utm_campaign=home" rel="noopener noreferrer" target="_blank">▶️ Empieza aquí</a>
+<a class="btn" href="https://youtu.be/4cBeu1a9iyY?utm_source=web&amp;utm_medium=cta&amp;utm_campaign=home" rel="noopener noreferrer" target="_blank">🎥 Último episodio</a>
+</div>
+<div class="note">Nota: contenido divulgativo (entretenimiento y reflexión). No sustituye evaluación médica o psicológica.</div>
+</div>
+<div aria-label="Resumen rápido" class="heroCard">
+<h3>Qué vas a encontrar</h3>
+<ul>
+<li>Explicaciones claras, sin promesas mágicas.</li>
+<li>Crítica, evidencia y límites del conocimiento.</li>
+<li>Herramientas prácticas con matiz y contexto.</li>
+</ul>
+<div aria-label="Redes sociales" class="pill">
+<a aria-label="YouTube" href="https://www.youtube.com/@rcarrillo_mx" rel="noopener noreferrer" target="_blank" title="YouTube">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.8ZM9.7 15.5V8.5l6.3 3.5-6.3 3.5Z"></path>
+</svg>
+</a>
+<a aria-label="Instagram" href="https://www.instagram.com/rcarrillo.mx/" rel="noopener noreferrer" target="_blank" title="Instagram">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5Zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5ZM18 6.7a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"></path>
+</svg>
+</a>
+<a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=61586735137399&amp;sk=about" rel="noopener noreferrer" target="_blank" title="Facebook">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V5c-.3 0-1.5-.1-2.9-.1-2.9 0-4.9 1.8-4.9 5v1.1H6v3h3.3v8h4.2Z"></path>
+</svg>
+</a>
+<a aria-label="TikTok" href="https://www.tiktok.com/@rcarrillo_mx" rel="noopener noreferrer" target="_blank" title="TikTok">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M14 2h2.1c.2 1.7 1.2 3.3 2.7 4.3 1 .7 2.2 1.1 3.4 1.2v2.1c-1.7 0-3.3-.5-4.7-1.5-.5-.3-.9-.7-1.3-1.1V15a7 7 0 1 1-7-7c.5 0 1 .1 1.5.2v2.3c-.5-.2-1-.3-1.5-.3a4.7 4.7 0 1 0 4.7 4.7V2Z"></path>
+</svg>
+</a>
+<a aria-label="X" href="https://x.com/rcarrillo_mx" rel="noopener noreferrer" target="_blank" title="X">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.2 22H2l7.3-8.4L1 2h6.4l4.4 5.8L18.9 2Zm-1.1 18h1.7L6.1 3.9H4.3L17.8 20Z"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<main>
+<div class="wrap">
+<section id="sobre">
+<h2 class="h2">Sobre el proyecto</h2>
+<div class="grid2">
+<div class="card">
+<span class="tag">Quién soy</span>
+<p style="margin:10px 0 0;">
+            Soy <strong>Rafael Carrillo</strong>, estudiante de neurociencias y fundador de Predictivo un podcast dónde conecto neurociencia, experiencia y pensamiento crítico para explicar
+            cómo percibimos, decidimos y nos desenvolvemos en el mundo... nuestra la realidad.
+          </p>
+<p class="muted" style="margin:10px 0 0;">
+            Enfoque: claridad &gt; hype. Si algo no tiene evidencia sólida, lo digo.
+          </p>
+</div>
+<div class="card">
+<span class="tag">Para quién es</span>
+<ul style="margin:10px 0 0; padding-left:18px;">
+<li>Si te interesan las neurociencias y estas cansado de los “gurús”.</li>
+<li>Si quieres contexto: qué se sabe, qué no, y por qué.</li>
+<li>Si buscas una idea o pregunta que te haga disfrutar un marco mental nuevo.</li>
+</ul>
+<div class="btnRow2">
+<a class="btn btnGhost" href="#contacto">🤝 Colabs</a>
+<a class="btn btnGhost" href="https://www.youtube.com/@rcarrillo_mx?utm_source=web&amp;utm_medium=button&amp;utm_campaign=sobre" rel="noopener noreferrer" target="_blank">Ver canal</a>
+</div>
+</div>
+</div>
+</section>
+<section id="empieza">
+<h2 class="h2">Empieza aquí</h2>
+<div class="card">
+<div class="grid2" style="align-items:center;">
+<div>
+<p style="margin:0;"><strong>Si eres nuevo:</strong> esta playlist te da el mapa mental del canal en orden.</p>
+<div class="btnRow2">
+<a class="btn btnDark" href="https://www.youtube.com/playlist?list=UUsnggbxqpFU8EwycWwTBZ5w&amp;utm_source=web&amp;utm_medium=button&amp;utm_campaign=empieza_aqui" rel="noopener noreferrer" target="_blank">▶️ Playlist esencial</a>
+<a class="btn btnGhost" href="https://youtu.be/4cBeu1a9iyY?utm_source=web&amp;utm_medium=button&amp;utm_campaign=empieza_aqui" rel="noopener noreferrer" target="_blank">🎥 Ver último</a>
+</div>
+</div>
+<div>
+<ul style="margin:0; padding-left:18px;">
+<li><strong>Qué es:</strong> neurociencia y como la vivimos en nuestro día con día.</li>
+<li><strong>Cómo:</strong> un marco conceptual se puede redefinir con nueva información.</li>
+<li><strong>Salida:</strong> un entendimiento más humano del cómo avanza la ciencia.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="episodio">
+<h2 class="h2">Episodio destacado</h2>
+<div class="card">
+<div class="embed">
+<iframe allowfullscreen="" src="https://www.youtube.com/embed/4cBeu1a9iyY" title="Episodio destacado"></iframe>
+</div>
+<div class="btnRow2">
+<a class="btn btnDark" href="https://youtu.be/4cBeu1a9iyY?utm_source=web&amp;utm_medium=button&amp;utm_campaign=episodio" rel="noopener noreferrer" target="_blank">Ver en YouTube</a>
+<a class="btn btnGhost" href="https://www.youtube.com/playlist?list=UUsnggbxqpFU8EwycWwTBZ5w&amp;utm_source=web&amp;utm_medium=button&amp;utm_campaign=episodio" rel="noopener noreferrer" target="_blank">Ver playlist</a>
+</div>
+</div>
+</section>
+<section id="diario">
+<h2 class="h2">Diario</h2>
+<div class="card">
+<div class="diaryGrid">
+<div>
+<span class="tag">Notas de progreso</span>
+<p style="margin:10px 0 0;">
+              Este es un espacio más intimo te compartiré de manera más intima mis ideas, sorpresas, miedos, dudas... pero sobre todo el camino que voy siguiendo hasta mi objetivo: ser un gran neurocientífico.
+            </p>
+<ul class="diaryList muted">
+<li><span class="mono">Corto</span>, directo, con referencias cuando aplique.</li>
+<li>Sin promesas mágicas: contexto y límites.</li>
+<li>Sirve para conversación y pensamiento crítico.</li>
+</ul>
+<div class="btnRow2">
+<a aria-label="Ir al diario" class="btn btnDark" href="blog/">📓 Ver diario</a>
+</div>
+</div>
+<div>
+<span class="tag">¿Qué vas a ver ahí?</span>
+<p class="muted" style="margin:10px 0 0;">
+              Divulgación científica en artículos divulgativos hechos por amigos y por mi, anécdotas más íntimas y aprendizajes reales. 
+            </p>
+</div>
+</div>
+</div>
+</section>
+<section id="contacto">
+<h2 class="h2">Contacto o Colaboraciones</h2><div class="grid2"><div class="card"><span class="tag">Contacto</span><p style="margin:10px 0 0;">Para invitaciones, entrevistas, colaboraciones o proyectos:</p><div class="btnRow2"><a class="btn btnDark" href="mailto:predictivo.contacto@gmail.com?subject=Contacto%20-%20Predictivo">📩 Enviar email</a><a class="btn btnGhost" href="https://forms.gle/TERafriorHxAu6bE9?utm_source=web&amp;utm_medium=button&amp;utm_campaign=contacto" rel="noopener noreferrer" target="_blank">Formulario</a></div><div class="note">Respondo por correo. Si incluye link de referencia, mejor.</div></div><div class="card"><span class="tag">Redes</span><p style="margin:10px 0 0;">Sígueme aquí:</p><div class="btnRow2"><a class="btn btnGhost" href="http://www.youtube.com/@rcarrillo_mx" rel="noopener noreferrer" target="_blank">YouTube</a><a class="btn btnGhost" href="https://www.instagram.com/rcarrillo.mx/" rel="noopener noreferrer" target="_blank">Instagram</a><a class="btn btnGhost" href="https://x.com/rcarrillo_mx" rel="noopener noreferrer" target="_blank">X</a><a class="btn btnGhost" href="https://www.tiktok.com/@rcarrillo_mx" rel="noopener noreferrer" target="_blank">TikTok</a><a class="btn btnGhost" href="https://www.facebook.com/profile.php?id=61586735137399&amp;sk=about" rel="noopener noreferrer" target="_blank">Facebook</a></div></div></div>
+</section>
+</div>
+</main>
+<footer>
+<div class="wrap">
+<div class="footGrid">
+<div>© <span id="y"></span> Predictivo por Rafael Carrillo</div>
+<div class="links">
+<a href="https://www.youtube.com/@rcarrillo_mx" rel="noopener noreferrer" target="_blank">YouTube</a>
+<a href="https://www.instagram.com/rcarrillo.mx/" rel="noopener noreferrer" target="_blank">Instagram</a>
+<a href="https://x.com/rcarrillo_mx" rel="noopener noreferrer" target="_blank">X</a>
+<a href="blog/">Diario</a>
+<a href="#inicio">Arriba ↑</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
