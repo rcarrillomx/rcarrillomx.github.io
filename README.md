@@ -1,4 +1,4 @@
-# Predictivo — Sitio + Diario
+# CIIC — Sitio + Diario
 
 Este repo publica el sitio en GitHub Pages.
 
